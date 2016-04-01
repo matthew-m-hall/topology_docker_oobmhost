@@ -29,6 +29,7 @@ from json import loads
 from topology_docker.node import DockerNode
 from topology_docker.utils import ensure_dir
 from topology_docker.shell import DockerShell, DockerBashShell
+from ipdb import set_trace
 
 
 class OobmHostNode(DockerNode):
@@ -48,6 +49,27 @@ class OobmHostNode(DockerNode):
         self._shells['bash'] = DockerBashShell(
             self.container_id, 'bash'
         )
+        self._interface_counter = 0
+
+    def notify_add_biport(self, node, biport):
+        """
+        Get notified that a new biport was added to this engine node.
+
+        :param node: The specification node that spawn this engine node.
+        :type node: pynml.nml.Node
+        :param biport: The specification bidirectional port added.
+        :type biport: pynml.nml.BidirectionalPort
+        :rtype: str
+        :return: The assigned interface name of the port.
+        """
+        if self._interface_counter == 0:
+            self._interface_counter += 1
+            return 'eth0'
+        else:
+            raise Exception(
+                'Multiple interfaces not supported on host type oobmhost'
+                )
+        return biport.metadata.get('label', biport.identifier)
 
 
 __all__ = ['OobmHostNode']
