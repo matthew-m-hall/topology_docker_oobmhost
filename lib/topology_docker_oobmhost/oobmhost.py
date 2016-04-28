@@ -29,7 +29,6 @@ from json import loads
 from topology_docker.node import DockerNode
 from topology_docker.utils import ensure_dir
 from topology_docker.shell import DockerShell, DockerBashShell
-from ipdb import set_trace
 
 
 class OobmHostNode(DockerNode):
@@ -41,7 +40,7 @@ class OobmHostNode(DockerNode):
     See :class:`topology_docker.node.DockerNode`.
     """
 
-    def __init__(self, identifier, image='ubuntu:latest', **kwargs):
+    def __init__(self, identifier, image='ubuntu:14.04', **kwargs):
 
         super(OobmHostNode, self).__init__(
             identifier, image=image, network_mode='bridge', **kwargs
