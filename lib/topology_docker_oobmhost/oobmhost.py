@@ -24,11 +24,8 @@ Custom Topology Docker Node for OpenSwitch.
 from __future__ import unicode_literals, absolute_import
 from __future__ import print_function, division
 
-from json import loads
-
 from topology_docker.node import DockerNode
-from topology_docker.utils import ensure_dir
-from topology_docker.shell import DockerShell, DockerBashShell
+from topology_docker.shell import DockerBashShell
 
 
 class OobmHostNode(DockerNode):
@@ -45,8 +42,11 @@ class OobmHostNode(DockerNode):
         super(OobmHostNode, self).__init__(
             identifier, image=image, network_mode='bridge', **kwargs
         )
-        self._shells['bash'] = DockerBashShell(
-            self.container_id, 'bash'
+        self._register_shell(
+            'bash',
+            DockerBashShell(
+                self.container_id, 'bash'
+            )
         )
         self._interface_counter = 0
 
