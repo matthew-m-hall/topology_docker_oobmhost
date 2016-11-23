@@ -1,22 +1,23 @@
-===================================
-oobmhost node for topology_docker
-===================================
+==========================
+Topology Docker OpenSwitch
+==========================
 
-A Topology oobmhost Node for topology_docker.
+Topology Docker Node for OpenSwitch
 
+Changelog
+=========
 
-Documentation
-=============
+1.0.0
+-----
 
-    https://github.com/HPENetworking/topology_docker_oobmhost/tree/master/doc
-
+- Initial public release.
 
 License
 =======
 
 ::
 
-   Copyright (C) 2016 Hewlett Packard Enterprise Development LP
+   Copyright (C) 2015-2016 Hewlett Packard Enterprise Development LP
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
