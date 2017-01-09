@@ -9,7 +9,7 @@ build/*
 
 # Sphinx
 doc/_build/*
-doc/topology_docker_openswitch/*
+doc/topology_docker_oobmhost/*
 
 # Tox
 .tox/*

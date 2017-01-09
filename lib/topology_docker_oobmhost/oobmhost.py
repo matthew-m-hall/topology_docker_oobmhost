@@ -42,12 +42,6 @@ class OobmHostNode(DockerNode):
         super(OobmHostNode, self).__init__(
             identifier, image=image, network_mode='bridge', **kwargs
         )
-        self._register_shell(
-            'bash',
-            DockerBashShell(
-                self.container_id, 'bash'
-            )
-        )
         self._interface_counter = 0
 
     def notify_add_biport(self, node, biport):
@@ -69,6 +63,12 @@ class OobmHostNode(DockerNode):
                 'Multiple interfaces not supported on host type oobmhost'
                 )
         return biport.metadata.get('label', biport.identifier)
+
+    def _register_shells(self, connectionobj):
+        """
+        See :meth:`CommonNode._register_shells` for more information.
+        """
+        connectionobj._register_shell('bash', DockerBashShell())
 
 
 __all__ = ['OobmHostNode']
